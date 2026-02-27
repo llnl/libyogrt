@@ -9,6 +9,7 @@
 AC_DEFUN([X_AC_FLUX_JOB_TIMELEFT], [
   AS_IF([test "$FLUX_LIBADD"],[
     AC_MSG_CHECKING([Whether flux_job_timeleft() is present.])
+    save_LIBS="$LIBS"
     LIBS="$FLUX_LIBS $FLUX_LIBADD $LIBS"
     AC_LINK_IFELSE([
       AC_LANG_PROGRAM(
@@ -25,6 +26,7 @@ AC_DEFUN([X_AC_FLUX_JOB_TIMELEFT], [
         AC_MSG_ERROR([flux_job_timeleft() is required.  Update to a newer flux or use --without-flux.])
       ]
     )
+    LIBS="$save_LIBS"
   ])
 
 ])
