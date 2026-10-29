@@ -50,7 +50,13 @@ AC_DEFUN([X_AC_SLURM], [
             _x_ac_slurm_libs_save="$LIBS"
             LIBS="-L$d/$bit -lslurm -lpthread -lcrypto $LIBS"
             AC_LINK_IFELSE(
-              [AC_LANG_PROGRAM([#include <slurm/slurm.h>],[slurm_get_rem_time(0);])],
+              [AC_LANG_PROGRAM(
+                [
+#define SLURM_BACKWARD_COMPAT
+#include <slurm/slurm.h>
+                ],
+                [slurm_get_rem_time(0);]
+              )],
               [AS_VAR_SET([x_ac_cv_slurm_dir], [$d])
                AS_VAR_SET([x_ac_cv_slurm_libdir], [$d/$bit])]
             )
@@ -73,7 +79,7 @@ AC_DEFUN([X_AC_SLURM], [
     SLURM_LIBADD="-lslurm"
   else
     if test "$with_slurm" = yes; then
-      AC_MSG_ERROR([slurm is not in specified location!])
+      AC_MSG_ERROR([unable to use slurm at the specified location])
     else
       AC_MSG_WARN([unable to locate slurm installation])
     fi

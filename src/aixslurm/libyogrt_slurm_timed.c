@@ -33,6 +33,7 @@
 #include <sys/un.h>
 #include <signal.h>
 
+#define SLURM_BACKWARD_COMPAT
 #include <slurm/slurm.h>
 
 int create_socket(const char *name);

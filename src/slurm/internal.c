@@ -26,6 +26,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
+#define SLURM_BACKWARD_COMPAT
 #include <slurm/slurm.h>
 
 static uint32_t jobid = NO_VAL;
