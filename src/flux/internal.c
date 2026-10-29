@@ -38,7 +38,7 @@ static flux_jobid_t jobid = 0;
 
 int internal_init(int verb)
 {
-	char *jobid_str;
+	const char *jobid_str;
 
 	_yogrt_verbosity = verb;
 	jobid_valid = 0;
